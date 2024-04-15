@@ -107,6 +107,7 @@ e2function string httpRequestUrl()
 end
 
 e2function string httpUrlEncode(string data)
+	data = data:sub(0, 1000)
 	local ndata = string.gsub( data, "[^%w _~%.%-]", function( str )
 		local nstr = string.format( "%X", string.byte( str ) )
 
@@ -117,6 +118,7 @@ e2function string httpUrlEncode(string data)
 end
 
 e2function string httpUrlDecode(string data)
+	data = data:sub(0, 1000)
 	local ndata = string.gsub( data, "+", " " )
 
 	return string.gsub( ndata, "(%%%x%x)", function( str )

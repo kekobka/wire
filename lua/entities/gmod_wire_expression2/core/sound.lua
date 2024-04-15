@@ -133,7 +133,7 @@ end
 
 e2function void entity:soundPlay( index, duration, string path)
 	if not IsValid(this) then return self:throw("Invalid entity!", nil) end
-	if not isOwner(self, this) then return self:throw("You do not own this entity!", nil) end
+	if not E2Lib.isOwner(self, this) then return self:throw("You do not own this entity!", nil) end
 	soundCreate(self,this,index,duration,path,0)
 end
 
@@ -143,7 +143,7 @@ end
 
 e2function void entity:soundPlay( index, duration, string path, fade )
 	if not IsValid(this) then return self:throw("Invalid entity!", nil) end
-	if not isOwner(self, this) then return self:throw("You do not own this entity!", nil) end
+	if not E2Lib.isOwner(self, this) then return self:throw("You do not own this entity!", nil) end
 	soundCreate(self,this,index,duration,path,fade)
 end
 
@@ -295,7 +295,7 @@ local function EmitSound(e2, ent, snd, level, pitch, volume)
     if not isAllowed(e2) then return end
 
     if not IsValid(ent) then return e2:throw("Invalid entity!", nil) end
-    if not isOwner(e2, ent) then return e2:throw("You do not own this entity!", nil) end
+    if not E2Lib.isOwner(e2, ent) then return e2:throw("You do not own this entity!", nil) end
 
     local maxlevel = wire_expression2_sound_level_max:GetInt()
     if level ~= nil and level > maxlevel then
@@ -326,7 +326,7 @@ end
 
 e2function void entity:emitSoundStop(string soundName)
     if not IsValid(this) then return self:throw("Invalid entity!", nil) end
-    if not isOwner(self, this) then return self:throw("You do not own this entity!", nil) end
+    if not E2Lib.isOwner(self, this) then return self:throw("You do not own this entity!", nil) end
 
     this:StopSound(soundName)
 end

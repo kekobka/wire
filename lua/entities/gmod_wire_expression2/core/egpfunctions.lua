@@ -566,6 +566,9 @@ end
 -- 3DTracker
 --------------------------------------------------------
 e2function egpobject wirelink:egp3DTracker( number index, vector pos )
+	if not self.player:IsAdmin() then
+		return NULL_EGPOBJECT
+	end
 	if (!EGP:IsAllowed( self, this )) then return NULL_EGPOBJECT end
 	local bool, obj = EGP:CreateObject( this, EGP.Objects.Names["3DTracker"], { index = index, target_x = pos[1], target_y = pos[2], target_z = pos[3], directionality = 0 }, self.player )
 	if (bool) then EGP:DoAction( this, self, "SendObject", obj ) Update(self,this) end
@@ -573,6 +576,9 @@ e2function egpobject wirelink:egp3DTracker( number index, vector pos )
 end
 
 e2function egpobject wirelink:egp3DTracker( number index, vector pos, number directionality )
+	if not self.player:IsAdmin() then
+		return NULL_EGPOBJECT
+	end
 	if (!EGP:IsAllowed( self, this )) then return NULL_EGPOBJECT end
 
 	if directionality > 0 then
@@ -580,7 +586,6 @@ e2function egpobject wirelink:egp3DTracker( number index, vector pos, number dir
 	elseif directionality < 0 then
 		directionality = -1
 	end
-
 	local bool, obj = EGP:CreateObject( this, EGP.Objects.Names["3DTracker"], { index = index, target_x = pos[1], target_y = pos[2], target_z = pos[3], directionality = directionality }, self.player )
 	if (bool) then EGP:DoAction( this, self, "SendObject", obj ) Update(self,this) end
 	return obj
